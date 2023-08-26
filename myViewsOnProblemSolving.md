@@ -2,13 +2,19 @@
 
 ## Common patterns on Problem solving
 
-## Titbits on problem solving
+## Information gained from solved problems
 
-- There may be some tricky questions in the view of binary search but there won't be any new logic applied. Let's
+  There may be some tricky questions in the view of binary search but there won't be any new logic applied. Let's
   consider [this problem](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/).
   It's a problem to find minimum element in the rotated sorted array in O(logN) time complexity.
   They are forcing us to use Binary Search. It'a normal way of using binary search in the sorted array and nothing will differ.
   View the solution and explanation for it in [here](https://github.com/Danusshkumar/LeetCode-problems/blob/main/minimumElementInO(logn).java).
+
+  See the difference between these problems ==> [problem](https://practice.geeksforgeeks.org/problems/maximum-index-1587115620/1) and [problem](https://leetcode.com/problems/maximum-difference-between-increasing-elements/description/)
+   They are differnt because in first problem we have to find the maximum index whereas in second problem we have to find the maximum difference.
+  value difference matters in second problem whereas index difference matters in first problem. That's why first problem is complicated involving lMin and
+  rMax. 
+  But second problem's logic is very simple. We have to find the maximum difference between element maintaining i < j where i and j are the position of minimum element and maximum element respectively. That's why we are updating the minimum element as it while iterating through the element and also updating the difference between those two elements if arr[i] > min
 
 ### Duplicates on Arrays
 
