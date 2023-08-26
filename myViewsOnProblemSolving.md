@@ -5,10 +5,10 @@
 ## Titbits on problem solving
 
 - There may be some tricky questions in the view of binary search but there won't be any new logic applied. Let's
-  consider (this problem)[https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/].
+  consider [this problem](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/).
   It's a problem to find minimum element in the rotated sorted array in O(logN) time complexity.
   They are forcing us to use Binary Search. It'a normal way of using binary search in the sorted array and nothing will differ.
-  View the solution and explanation for it in (here)[https://github.com/Danusshkumar/LeetCode-problems/blob/main/minimumElementInO(logn).java].
+  View the solution and explanation for it in [here](https://github.com/Danusshkumar/LeetCode-problems/blob/main/minimumElementInO(logn).java).
 
 ### Duplicates on Arrays
 
