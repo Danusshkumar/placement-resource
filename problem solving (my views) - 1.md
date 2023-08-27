@@ -1,4 +1,4 @@
-## My views on Problem solving
+## Problem solving - my views
 
 ## Common patterns on Problem solving
 
