@@ -1,4 +1,4 @@
-## Problem solving - my views
+> Problem Solving - 1
 
 ## Common patterns on Problem solving
 
@@ -11,7 +11,7 @@
   View the solution and explanation for it in [here](https://github.com/Danusshkumar/LeetCode-problems/blob/main/minimumElementInO(logn).java).
 
   See the difference between these problems ==> [problem](https://practice.geeksforgeeks.org/problems/maximum-index-1587115620/1) and [problem](https://leetcode.com/problems/maximum-difference-between-increasing-elements/description/)
-   They are differnt because in first problem we have to find the maximum index whereas in second problem we have to find the maximum difference.
+   They are different because in first problem we have to find the maximum index whereas in second problem we have to find the maximum difference.
   value difference matters in second problem whereas index difference matters in first problem. That's why first problem is complicated involving lMin and
   rMax. 
   But second problem's logic is very simple. We have to find the maximum difference between element maintaining i < j where i and j are the position of minimum element and maximum element respectively. That's why we are updating the minimum element as it while iterating through the element and also updating the difference between those two elements if arr[i] > min
