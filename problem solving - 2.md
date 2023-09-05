@@ -141,3 +141,8 @@ class Solution {
 - Or any independent element, we may not care about it corner edges, right. But our independent array is not full array and it's a subarray so we have to care about corner case.
 - But it's meaningless, because we chooses that array, as it satisfies the corner case (on mid element comparison)
 - The solution may be found meaningless but it would make sense if you watch [this video](https://practice.geeksforgeeks.org/batch/dsa-4/track/DSASP-Searching/video/MTU3MDQ%3D)
+
+
+## Triplets in the sorted array
+
+Refer [this](https://practice.geeksforgeeks.org/batch/dsa-4/track/DSASP-Searching/video/NzAyMg%3D%3D) video
