@@ -146,3 +146,71 @@ class Solution {
 ## Triplets in the sorted array
 
 Refer [this](https://practice.geeksforgeeks.org/batch/dsa-4/track/DSASP-Searching/video/NzAyMg%3D%3D) video
+
+## Sliding window technique on unsorted array
+
+Let's consider [this](https://github.com/Danusshkumar/geeks-for-geeks-problems/blob/main/subarrayWithGivenSum.java) problem, Subarray with given sum.
+
+We can use sliding window technique to find whether there is an subarray with given sum or not. This sliding window technique will work for both sorted and unsorted array but the array must not contains negative elements.
+If there is any negative element, it'll break the condition checking (the core principle ) of sliding window technique which results in wrong results. But without negative elements, sliding window technique will be applied for both sorted and unsorted arrays.
+
+In this technique, we have to maintain one array with left and right side ends and if the sum of this subarray is greater than target, remove one element (left element) and if the sum of this subarray is smaller than target, add one element (right element) and if the sum of this subarray is equal to target, then return the starting point (left) and ending point (right) of that subarray. 
+
+
+## Median of Two sorted array in O(logN)
+
+In this problem, we have to sync the mid point of both the arrays. We have to set the first array as the smaller array ( if not, then swap the arrays). And then,sync the mid point of second array with the formula `(n1 + n2 + 1)/2 - i1` where i1 is the mid point of first array. Here mid point is where the all the elements in the left are smaller than mid point and all the element in the right are greater than mid point. We are using Integer.MAX_VALUE and Integer.MIN_VALUE for some corner cases.
+
+Note that max1 and max2 are the maximum of first half of corresponding arrays and 
+min1 and min2 are the minimum of second half of the corresponding arrays.
+
+The core idea is that the left side element must be smaller or equal to both i1 and i2 (i1 and i2 are min1 and min2 respectively) and right side element must be greater than max1 and max2 where max1 and max2 are maximum element in left half of the array. 
+
+>Note: i1 and i2 are the beginning of right half of the array and they are belongs to right half. Left half size will somewhat greater than right half size by 1 if there are odd number of elements present in array)
+
+```
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int n1 = nums1.length, n2 = nums2.length;
+        //swapping the reference if n1 > n2
+        if(n1 > n2){
+            return findMedianSortedArrays(nums2,nums1);
+        }
+        int begin = 0, end = n1;
+        
+        while(begin <= end){
+            int i1 = begin + (end - begin)/2;
+            int i2 = (n1 + n2 + 1)/2 - i1;
+
+            int min1 = (i1 == n1) ? Integer.MAX_VALUE : nums1[i1];
+            int min2 = (i2 == n2) ? Integer.MAX_VALUE : nums2[i2];
+            int max1 = (i1 == 0) ? Integer.MIN_VALUE : nums1[i1 - 1];
+            int max2 = (i2 == 0) ? Integer.MIN_VALUE : nums2[i2 - 1];
+
+            //main logic goes here
+            if(max1 <= min2 && min1 >= max2){
+                // we found the mid element here
+                if( (n1+n2)%2 == 0 ){
+                    //even number of elements
+                    return (double) (Math.min(min1,min2) + Math.max(max1,max2))/2;
+                }
+                else {
+                    // odd number of elements
+                    return (double) Math.max(max1,max2);
+                }
+
+            }
+            else if(max1 > min2){
+                // move to right side
+                end = i1 - 1;
+            }
+            else {
+                //move to left side
+                begin = i1 + 1;
+            }
+        }
+
+        return -1;
+    }
+}
+```
