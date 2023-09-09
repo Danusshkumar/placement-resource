@@ -1,6 +1,6 @@
 > Problem Solving - 3
 
-# Deep Dive into Sorting
+# Deep Dive into Sorting - 1
 
 ## Overview
 
@@ -97,7 +97,7 @@ but when it comes to Collections class, all the elements are non-primitive
 
 ### Stability in sorting arrays with objects
 
-Array of objects : { {CS,101}, {ECE, 102}, {CS, 104}, {CS, 105}, {ECE, 107} }
+Array of objects : {CS,101}, {ECE, 102}, {CS, 104}, {CS, 105}, {ECE, 107} }
 
 If our algorithm is not stable, we will cluster CS, ECE students (sorting with branches) but we won't get the roll numbers in correct order. If our algorithm is stable, we can also get roll nos in correct order apart from branch wise clustering. 
 
@@ -108,12 +108,92 @@ On primitive, it uses **Dual Pivot QuickSort** which doesn't guarantee stability
 
 ### Arrays.sort() in Java
 
+`Arrays.sort()` doesn't receive the comparator for the array so that we are only able to sort the primitive data types. Inorder to sort non-primitive data types, `Collections.sort()` is suggested as they receive the custom comparator. `Arrays.sort()` has one more version also. It receives the starting and ending index as parameter and only sorts the array inside that range. Note that start index is included and end index is excluded as it has in all programming languages `[start,end)`.
+If we want to sort the non-primitive data types with Arrays.sort(), then we may implement Comparable class in non-primitive data types and define the compareTo() method as I given below.
+
+```
+class Point implements Comparable<Point> {
+    int x, y;
+    Point(int x,int y){
+        this.x = x;
+        this.y = y;
+    }
+    public int compareTo(Point p){
+        return this.x - p.x;
+    }
+}
+
+//on main function just do
+Arrays.sort(arr); // where arr is the array of Point
+```
+If we don't want to make our object Comparable, then we can use Comparator class to do this as given below:
+
+```
+class Point {
+    int x, y;
+    Point(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+}
+
+class MyCmp implements Comparator<Point>{
+    public int compare(Point p1, Point p2){
+        return p1.x - p2.x;
+    }
+}
+
+// on main function
+Arrays.sort(arr,new MyCmp());
+```
+
+There is a difference between custom compare function in Collection and Comparable object in Arrays. In Collections, we will create our own boolean function and assign it as compare function. but in Arrays, we must have our data type implements Comparable interface to pass an Comparator objec which implements Comparator class.
+
+```
+Integer[] arr = {1,4,5,6,7};
+Arrays.sort(arr,Collections.reverseOrder());
+```
+We may use Collections.reverseOrder()) for non-primitive types inorder to do reversal sorting without reversing the array.
 
 
+The main thing about compare function is that, if the function returns the positive value, then the element will be swapped, else not. 
+If p1.x - p2.x will return true only when p1 is greater than p2. We have to keep in mind that p1 occurs before p2 in the array. That's why if the positive value is returned, then we have to swap the elements. 
+
+If we want to have the even elements front and odd elements back, then we will do
+```
+class MyCmp implements Comparator<Integer>{
+    public int compare(Integer a, Integer b){
+        return a%2 - b%2; // if we want odd number on first, then b%2 - a%2
+    }
+}
+```
 
 
+### Why Collections takes only non-primitive objects as their data-types ?
+
+The Collections are specially made for manipulate with non-primitives, so they compare their data with compareTo function which is a function that is defined in Comparable interface. That means, every custom objects that we add into our Collections must implement the Comparable interface inorder to results on sorting. If we neither have non-primitive data types that implements Comparable interface nor we have custom Comparator object, then we will get **ClassCastException** at run time. So Collections are designed to use the compareTo function in Comparable class or to use compare function in Comparator class. They didn't have any natural comparison techniques as Arrays do with primitve data types. Due to this design of collection, they can't be able to intake the primary data types, instead they have Wrapper classes for primitive data-types (an alternative non-primitive form of primitive data types). Ex: Integer, Character, etc. These classes implements Comparable interface by default and has compareTo function too. This is the reason why Collections sort Integers. 
+
+### Question and Answer about Stability :
+
+#### Question:
+What the term "stability in sorting algorithm" represents ? What happens if the algorithm is not stable ? Is there any chance that the array won't be sorted if the algorithm is not stable ? Quick sort is not stable then merge sort ? Is this means that Quick sort gives wrong results in sorting ??
 
 
+#### Answer:
+
+The term "stability in sorting algorithm" represents how the algorithm treats equal elements in the input array. A sorting algorithm is stable if it preserves the relative order of equal elements in the sorted output. For example, if we have an array of names and ages, and we sort it by age, a stable algorithm will keep the original order of names with the same age.
+
+If the algorithm is not stable, it may change the relative order of equal elements in the sorted output. For example, if we have an array of names and ages, and we sort it by age, an unstable algorithm may swap the names with the same age. This may not matter if we only care about the order of ages, but it may matter if we also care about the order of names.
+
+There is no chance that the array won't be sorted if the algorithm is not stable. An unstable algorithm can still sort the array correctly according to the given criteria. For example, quick sort is an unstable algorithm, but it can sort an array of integers in ascending order correctly. However, it may not preserve the relative order of equal integers in the sorted output.
+
+Quick sort is not stable, while merge sort is stable. This does not mean that quick sort gives wrong results in sorting. It only means that quick sort does not guarantee to preserve the relative order of equal elements in the sorted output, while merge sort does. For example, if we have an array of points with x and y coordinates, and we sort it by x coordinate, quick sort may swap the points with the same x coordinate, while merge sort will keep them in the same order as they appear in the input array.
+
+Stability is important when we want to sort an array by multiple criteria. For example, if we want to sort an array of students by name and then by grade, we can first use a stable algorithm to sort by name, and then use another stable algorithm to sort by grade. This way, we can ensure that the students with the same grade are still sorted by name in the final output. If we use an unstable algorithm for either step, we may lose the order of names or grades in the final output.
 
 
+### Stabilities in Sorting Algorithms
 
+Stable sorting Algorithms : Bubble sort, Insertion sort, Merge sort
+
+Unstable sorting Algorithms : Selection sort, Quick sort and Heap sort
