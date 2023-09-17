@@ -15,6 +15,40 @@
   value difference matters in second problem whereas index difference matters in first problem. That's why first problem is complicated involving lMin and
   rMax. 
   But second problem's logic is very simple. We have to find the maximum difference between element maintaining i < j where i and j are the position of minimum element and maximum element respectively. That's why we are updating the minimum element as it while iterating through the element and also updating the difference between those two elements if arr[i] > min
+  
+### Dutch national flag problem
+
+In the below code, the mid is not incremented when arr[mid] == 2 becomes true but mid get
+incremented when arr[mid] == 0. Because, the element before mid are processed meaning that there 0 only exists. But after mid, there may be 0, 1 or 2 also exists. Consider the case where 2 swapped with 2 or 2 swapped with 0. Now, the 0 will remains in the mid part without being swapped into first part. That's why on swapping, with last part(`high` controlled part), the mid value not get incremented
+
+```
+class Solution
+{
+    public static void swap(int[] arr, int a, int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+    
+    public static void segragate012(int arr[], int n){
+        int low = 0, high = n - 1, mid = 0;
+        while(mid <= high){
+            if(arr[mid] == 0){
+                swap(arr,low,mid);
+                low++;
+                mid++;
+            }
+            else if(arr[mid] == 2){
+                swap(arr,mid,high);
+                high--;
+            }
+            else if(arr[mid] == 1){
+                mid++;
+            }
+        }
+    }
+}
+```
 
 ### Duplicates on Arrays
 
