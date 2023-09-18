@@ -270,6 +270,7 @@ void countingSort(int[] arr){
     for(int i = 0;i<n;i++){
         k = Math.max(k,arr[i]);
     }
+    k += 1;//to store the max element (k)
     int count = new int[k];
     for(int i = 0;i<n;i++){
         count[arr[i]] += 1;
@@ -294,6 +295,7 @@ void countingSort(int[] arr){
     
     for(int i = 0;i<n;i++)
         k = Math.max(k,arr[i]);
+    k += 1;// to stor the max element (k)
         
     int count = new int[k];
     for(int i = 0;i<n;i++)
