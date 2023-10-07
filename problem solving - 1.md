@@ -62,3 +62,32 @@ class Solution
 - Explore all duplicates related problems to learn and feel this
 
 ## Questions on problem solving
+
+### Greedy approach: questions and answers
+
+Qn: is getting the value for current index from doing some computation for the value of previous index is considered to be greedy in programming ?
+
+Ans: 
+Yes, obtaining the value for the current index by performing some computation based on the value of the previous index is a characteristic often associated with a greedy algorithm in programming.
+
+In a greedy algorithm, you make a series of choices at each step, and the choice you make at each step is the one that seems best at that moment without considering the consequences of that choice on future steps. In the context you mentioned, the "best" choice for the current index is determined based on the value computed for the previous index.
+
+For example, in a situation where you are trying to maximize or minimize some value, and the decision for the current step depends only on the value at the previous step (as opposed to considering all previous steps), this can be seen as a form of greedy strategy.
+
+Greedy algorithms are often used in optimization problems and can be efficient and easy to implement, but they may not always produce the optimal solution in every case. It's important to analyze the problem and ensure that a greedy approach will indeed yield a correct or acceptable solution.
+
+Qn: If this is the case, then finding maximum element in the array is also considered as greedy, right
+
+Ans: Yes, finding the maximum element in an array can be considered a simple form of a greedy approach. In this case, you're making a series of choices where at each step, you're choosing the maximum value seen so far. This approach doesn't involve considering the overall future consequences of each choice; instead, it focuses on making a locally optimal choice (choosing the maximum value at each step).
+
+A simple algorithm to find the maximum element in an array is a form of a greedy approach because you're iteratively selecting the largest element seen up to the current point in the array without considering the entire array at once.
+
+However, it's important to note that not every algorithm that involves finding the maximum element is a greedy algorithm. Greedy algorithms usually involve making a series of choices in a way that at each step, you make the locally optimal choice without revisiting that decision later. The key characteristic is that the choice at each step is based only on the current situation, not on the entire problem or the optimal solution for the entire problem.
+
+Qn: Why this approach is given the name greedy
+
+Ans: The term "greedy" in the context of algorithm design refers to the algorithmic strategy of making the best possible choice at each step, without worrying about the global situation or long-term consequences. Essentially, a greedy algorithm makes a series of choices by always selecting the locally optimal solution at each step in the hopes of finding the overall optimal solution for the entire problem.
+
+The term "greedy" is used because, at each step, the algorithm is being "greedy" or "selfish" by choosing what appears to be the best option right then, without considering the potential future implications or the overall global optimal solution.
+
+It's important to note that while greedy algorithms are often easy to design and computationally efficient, they don't always guarantee the globally optimal solution for every problem. There are cases where a greedy approach may lead to a suboptimal or incorrect result, and it's essential to analyze the problem and determine if a greedy strategy is appropriate and if it indeed produces the desired solution.
