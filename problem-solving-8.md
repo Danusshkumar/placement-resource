@@ -339,8 +339,25 @@ void RBSearch(String pat, String txt, int m, int n){
 ```
 
 
+## KMP Algorithm - Constructing LPS Array
 
+LPS - Longest Proper Prefix and Suffix. To construct LPS array, there are two method.
+One is naive method O(n<sup>3</sup>) and another one is efficient method O(n). Implementation of [naive](https://ide.geeksforgeeks.org/Op1A0EXXgN) method and [efficient](https://ide.geeksforgeeks.org/u4ZzhM4xu3) method.
 
+## KMP Algorithm - Implementation
 
+With the LPS array, we can implement KMP search which works in linear time O(2n) to find the pattern match where n is the length of text and m is the length of pattern to be searched. 
 
+## Check if the strings are rotations
 
+We may do the rotation for second string and match the result with first string whether they get matched or not. But here, we want to generate all rotation from rotation by one to rotation by n. Each rotation takes O(n) time complexity and there will be atmost n rotation. So overall time complexity will become O(n<sup>2</sup>).
+
+Instead of doing this we can do search for the second string in the first string in circular manner. For circular manner, we make the first string s1 as s1+s1 (concatenated with itself). Now if we use pattern searching ( KMP - O(2n) tc), we can get whether the strings are rotations are not in Linear Time Complexity.
+
+## Anagram search
+
+Given a second string we have to check whether the anagram of second string (s2) present in s1 or not. We are sliding the pattern (s2) over s1 and we are doing anagram search for each moment. Anagram search has time complexity of O(m) where m is the length of pattern. So overall Time Complexity will be O((m+n-1)*m). Quadratic time complexity. [Here](https://ide.geeksforgeeks.org/OhRcRNpfrj) is the implementation of naive approach.
+
+We can reduce the time complexity of doing anagram search by computing current pattern data using previous pattern data and it's a constant work. So we can reduce the overhead of having O(m) time complexity for anagram search to O(1) and we can reduce the overall time complexity to O(m+n-1). [Here](https://ide.geeksforgeeks.org/OU2oJwatJN) is the implementation of efficient approach.
+
+Refer [here](https://practice.geeksforgeeks.org/batch/dsa-4/track/DSASP-Strings/video/MTYxNA%3D%3D) and [here](https://practice.geeksforgeeks.org/batch/dsa-4/track/DSASP-Strings/video/MTQ3MQ%3D%3D) for **Lexicographic Rank of a string** and **Longest Substring with Distinct Characters**
