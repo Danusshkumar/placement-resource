@@ -65,3 +65,5 @@ alert(message);
 ## Inline code
 
 This web site is using `markedjs/marked`.
+
+Get links for uploaded image [here](https://postimages.org/)
