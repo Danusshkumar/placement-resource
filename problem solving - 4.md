@@ -207,7 +207,7 @@ public static int lPartition(int[] arr,int l, int h, int p){
         }
     }
     swap(arr,i+1,h);
-    return i;
+    return (i+1);
 }
 ```
 
